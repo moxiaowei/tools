@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>🧰 我的工具箱</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  :root{
+    --bg:#0f1420; --panel:#1a2133; --panel2:#222c42; --line:#2c3852;
+    --txt:#e8edf7; --sub:#8b9ab5; --accent:#4f8cff; --teal:#2dd4a7; --gold:#f5b942;
+  }
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:radial-gradient(1200px 600px at 20% -10%, #1c2b4a 0%, var(--bg) 55%);
+    color:var(--txt); min-height:100vh; padding:0 0 48px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 18px}
+  /* header */
+  header{padding:46px 0 26px;text-align:center}
+  .logo{font-size:44px;line-height:1;filter:drop-shadow(0 4px 16px rgba(79,140,255,.5))}
+  h1{font-size:26px;font-weight:800;letter-spacing:.5px;margin:14px 0 6px;
+     background:linear-gradient(100deg,#8fb4ff,#2dd4a7 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--sub);font-size:13.5px;letter-spacing:.3px}
+  .status{margin-top:14px;display:inline-flex;align-items:center;gap:7px;font-size:12px;
+    background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 14px;color:var(--sub)}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
+  .dot.off{background:#ff6b6b;box-shadow:0 0 10px #ff6b6b}
+  /* section */
+  .sec{margin-top:30px}
+  .sec-h{display:flex;align-items:center;gap:9px;font-size:14.5px;font-weight:700;
+    color:#b9c6df;letter-spacing:.5px;margin:0 4px 13px}
+  .sec-h .bar{width:4px;height:16px;border-radius:3px;background:linear-gradient(var(--accent),var(--teal))}
+  .sec-h .cnt{margin-left:auto;font-weight:600;font-size:11.5px;color:var(--sub);
+    background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+  /* grid */
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+  @media(min-width:680px){.grid{grid-template-columns:repeat(3,1fr)}}
+  a.card{display:block;text-decoration:none;color:inherit;position:relative;overflow:hidden;
+    background:linear-gradient(155deg,var(--panel2),var(--panel));
+    border:1px solid var(--line);border-radius:16px;padding:17px 16px 16px;
+    transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+  a.card:hover{transform:translateY(-3px);border-color:#3d5680;box-shadow:0 12px 28px -12px rgba(79,140,255,.55)}
+  a.card:active{transform:translateY(-1px) scale(.99)}
+  .card .ico{font-size:26px;line-height:1;margin-bottom:11px;display:block}
+  .card .name{font-size:15px;font-weight:700;letter-spacing:.2px;margin-bottom:5px}
+  .card .desc{font-size:12px;color:var(--sub);line-height:1.5;min-height:18px}
+  .tag{display:inline-block;margin-top:11px;font-size:10.5px;font-weight:700;letter-spacing:.3px;
+    padding:3px 9px;border-radius:999px;border:1px solid transparent}
+  .tag.live{color:#7fd8ff;background:rgba(79,140,255,.14);border-color:rgba(79,140,255,.35)}
+  .tag.local{color:#7fe8c4;background:rgba(45,212,167,.12);border-color:rgba(45,212,167,.32)}
+  .tag.perm{color:#ffd27a;background:rgba(245,185,66,.13);border-color:rgba(245,185,66,.35)}
+  .tag.read{color:#c3b2ff;background:rgba(150,120,255,.13);border-color:rgba(150,120,255,.32)}
+  /* footer */
+  footer{margin-top:40px;text-align:center;color:#5f6f8c;font-size:11.5px;line-height:1.8}
+  .hint{margin-top:24px;padding:14px 16px;border-radius:13px;font-size:12px;line-height:1.7;color:var(--sub);
+    background:rgba(245,185,66,.06);border:1px solid rgba(245,185,66,.22)}
+  .hint b{color:#ffd27a}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">🧰</div>
+    <h1>我的工具箱</h1>
+    <div class="sub">财务 · 投资 · 历史 · 备考 · 生活</div>
+    <div class="status"><span class="dot" id="dot"></span><span id="statusTxt">检测服务器…</span></div>
+  </header>
+
+  <div id="app"></div>
+
+  <div class="hint">
+    💡 本页为<b>永久导航入口</b>。标 <b>⚡实时</b> 的工具依赖家里服务器，服务器在线即可用（隧道换址会自动同步，无需重新收藏）。
+    标 <b>🌐永久</b> 的是已托管到 GitHub Pages 的公开版，服务器关机也能打开。
+  </div>
+
+  <footer>
+    <div id="footDate"></div>
+    <div>数据与记录保存在你自己的浏览器(本地)，不经第三方服务器</div>
+  </footer>
+</div>
+
+<script>
+// 工具清单：path 为相对路径（拼到 base 上）
+const GROUPS = [
+  {t:"💰 财务", items:[
+    {ico:"💵", name:"月度资产复盘", desc:"账户/出借风险/资产结构", path:"/finance.html", tag:"local", tagName:"服务器备份"},
+    {ico:"🧾", name:"月度收支复盘", desc:"收入/支出/结余两表法", path:"/cashflow.html", tag:"local", tagName:"服务器备份"},
+  ]},
+  {t:"📈 投资", items:[
+    {ico:"📊", name:"A股复盘看板", desc:"大盘/板块/个股行情", path:"/astock.html", tag:"live", tagName:"⚡实时"},
+    {ico:"🥇", name:"黄金监测", desc:"国际金价/PAXG/宏观指标", path:"/gold.html", tag:"live", tagName:"⚡实时"},
+  ]},
+  {t:"📜 历史", items:[
+    {ico:"🏯", name:"华夏朝代脉络", desc:"十四朝·明16帝·人物图谱", path:"/history.html", tag:"read", tagName:"深度阅读"},
+    {ico:"👑", name:"明朝时间线", desc:"十六帝主线·六大分期", path:"/ming.html", tag:"read", tagName:"深度阅读"},
+  ]},
+  {t:"📚 备考", items:[
+    {ico:"📝", name:"统计师刷题", desc:"中级统计师每日刷题", path:"/quiz.html", tag:"read", tagName:"题库"},
+  ]},
+  {t:"🏃 生活", items:[
+    {ico:"🏃", name:"运动打卡", desc:"健身/跑步记录", path:"/fitness.html", tag:"local", tagName:"本地存储"},
+    {ico:"🀄", name:"广东麻将攻略", desc:"红中变玩法全攻略", path:"/mahjong.html", tag:"read", tagName:"攻略"},
+    {ico:"🔍", name:"识图工具箱", desc:"找物品/人物/出处", path:"/image-search.html", tag:"live", tagName:"工具"},
+    {ico:"⚽", name:"2026世界杯", desc:"完整数据与专业分析", path:"/wc.html", tag:"live", tagName:"实时数据"},
+  ]},
+];
+
+const PERM = [
+  {ico:"💵", name:"月度资产复盘", desc:"永久公开版(GitHub)", href:"https://moxiaowei.github.io/asset-review/", tag:"perm", tagName:"🌐永久"},
+  {ico:"🏯", name:"华夏朝代脉络", desc:"永久公开版(GitHub)", href:"https://moxiaowei.github.io/huaxia-dynasty/", tag:"perm", tagName:"🌐永久"},
+];
+
+function cardHTML(it, base){
+  const href = it.href || (base + it.path);
+  const cls = it.tag==='live'?'live':it.tag==='perm'?'perm':it.tag==='read'?'read':'local';
+  const tn = it.tagName || (it.tag==='live'?'⚡实时':it.tag==='read'?'阅读':'本地');
+  return `<a class="card" href="${href}" target="_blank" rel="noopener">
+    <span class="ico">${it.ico}</span>
+    <div class="name">${it.name}</div>
+    <div class="desc">${it.desc}</div>
+    <span class="tag ${cls}">${tn}</span>
+  </a>`;
+}
+
+function paint(base){
+  let html='';
+  GROUPS.forEach(g=>{
+    html += `<div class="sec"><div class="sec-h"><span class="bar"></span>${g.t}<span class="cnt">${g.items.length}</span></div>`;
+    html += `<div class="grid">`+g.items.map(it=>cardHTML(it,base)).join('')+`</div></div>`;
+  });
+  html += `<div class="sec"><div class="sec-h"><span class="bar"></span>🌐 永久公开版（服务器关机也能看）<span class="cnt">${PERM.length}</span></div>`;
+  html += `<div class="grid">`+PERM.map(it=>cardHTML(it,'')).join('')+`</div></div>`;
+  document.getElementById('app').innerHTML = html;
+}
+
+const d=new Date();
+document.getElementById('footDate').textContent = d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日 · 更新';
+
+const host = location.hostname;
+const isTunnel = host.includes('trycloudflare') || host==='localhost' || host.startsWith('127.');
+const dot=document.getElementById('dot'), st=document.getElementById('statusTxt');
+
+// 隧道内直接相对路径；GitHub Pages 上则读取 live.json 得到当前隧道地址
+if(isTunnel){
+  paint('');
+  dot.className='dot'; st.textContent='运行于家庭服务器 · 全部工具可用';
+}else{
+  fetch('live.json?t='+Date.now(), {cache:'no-store'})
+    .then(r=>r.json())
+    .then(cfg=>{
+      const base = (cfg && cfg.base) ? cfg.base.replace(/\/$/,'') : '';
+      paint(base);
+      // 探活
+      checkAlive(base);
+    })
+    .catch(()=>{ paint(''); checkAlive(''); });
+}
+
+function checkAlive(base){
+  const ac = new AbortController();
+  const to = setTimeout(()=>ac.abort(), 6000);
+  fetch(base+'/live.json?t='+Date.now(), {signal:ac.signal, cache:'no-store'})
+    .then(r=>r.ok?r.json():Promise.reject())
+    .then(j=>{ clearTimeout(to);
+      dot.className='dot'; st.textContent= j&&j.base? '服务器在线 · 工具可用' : '服务器在线'; })
+    .catch(()=>{ clearTimeout(to);
+      dot.className='dot off'; st.textContent='服务器离线 · 仅🌐永久版可用'; });
+}
+</script>
+</body>
+</html>
