@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
 <title>🧰 我的工具箱</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -17,50 +18,86 @@
     -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:920px;margin:0 auto;padding:0 18px}
-  /* header */
   header{padding:46px 0 26px;text-align:center}
   .logo{font-size:44px;line-height:1;filter:drop-shadow(0 4px 16px rgba(79,140,255,.5))}
   h1{font-size:26px;font-weight:800;letter-spacing:.5px;margin:14px 0 6px;
      background:linear-gradient(100deg,#8fb4ff,#2dd4a7 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .sub{color:var(--sub);font-size:13.5px;letter-spacing:.3px}
-  .status{margin-top:14px;display:inline-flex;align-items:center;gap:7px;font-size:12px;
-    background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 14px;color:var(--sub)}
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
-  .dot.off{background:#ff6b6b;box-shadow:0 0 10px #ff6b6b}
-  /* section */
-  .sec{margin-top:30px}
-  .sec-h{display:flex;align-items:center;gap:9px;font-size:14.5px;font-weight:700;
-    color:#b9c6df;letter-spacing:.5px;margin:0 4px 13px}
-  .sec-h .bar{width:4px;height:16px;border-radius:3px;background:linear-gradient(var(--accent),var(--teal))}
-  .sec-h .cnt{margin-left:auto;font-weight:600;font-size:11.5px;color:var(--sub);
-    background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
-  /* grid */
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
-  @media(min-width:680px){.grid{grid-template-columns:repeat(3,1fr)}}
-  a.card{display:block;text-decoration:none;color:inherit;position:relative;overflow:hidden;
-    background:linear-gradient(155deg,var(--panel2),var(--panel));
-    border:1px solid var(--line);border-radius:16px;padding:17px 16px 16px;
-    transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
-  a.card:hover{transform:translateY(-3px);border-color:#3d5680;box-shadow:0 12px 28px -12px rgba(79,140,255,.55)}
-  a.card:active{transform:translateY(-1px) scale(.99)}
-  .card .ico{font-size:26px;line-height:1;margin-bottom:11px;display:block}
-  .card .name{font-size:15px;font-weight:700;letter-spacing:.2px;margin-bottom:5px}
-  .card .desc{font-size:12px;color:var(--sub);line-height:1.5;min-height:18px}
-  .tag{display:inline-block;margin-top:11px;font-size:10.5px;font-weight:700;letter-spacing:.3px;
-    padding:3px 9px;border-radius:999px;border:1px solid transparent}
-  .tag.live{color:#7fd8ff;background:rgba(79,140,255,.14);border-color:rgba(79,140,255,.35)}
-  .tag.local{color:#7fe8c4;background:rgba(45,212,167,.12);border-color:rgba(45,212,167,.32)}
-  .tag.perm{color:#ffd27a;background:rgba(245,185,66,.13);border-color:rgba(245,185,66,.35)}
-  .tag.read{color:#c3b2ff;background:rgba(150,120,255,.13);border-color:rgba(150,120,255,.32)}
-  /* footer */
-  footer{margin-top:40px;text-align:center;color:#5f6f8c;font-size:11.5px;line-height:1.8}
-  .hint{margin-top:24px;padding:14px 16px;border-radius:13px;font-size:12px;line-height:1.7;color:var(--sub);
-    background:rgba(245,185,66,.06);border:1px solid rgba(245,185,66,.22)}
-  .hint b{color:#ffd27a}
+  .sub{color:var(--sub);font-size:13.5px;letter-spacing:1px}
+  .status{margin-top:16px;font-size:12.5px;color:var(--sub);display:flex;align-items:center;justify-content:center;gap:7px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px rgba(45,212,167,.13)}
+  .dot.off{background:#6b7688;box-shadow:0 0 0 4px rgba(107,118,136,.13)}
+  .sec{margin:26px 0 4px}
+  .sec-h{display:flex;align-items:center;gap:9px;font-size:14.5px;font-weight:700;color:#cfe0ff;margin-bottom:12px}
+  .sec-h .bar{width:3px;height:15px;border-radius:2px;background:linear-gradient(180deg,var(--accent),var(--teal))}
+  .sec-h .cnt{font-size:11.5px;color:var(--sub);font-weight:500;background:var(--panel);padding:1px 7px;border-radius:20px;border:1px solid var(--line)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:12px}
+  .card{background:linear-gradient(160deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:14px;
+    padding:15px 15px 13px;text-decoration:none;color:inherit;display:block;transition:.18s;position:relative;overflow:hidden}
+  .card:hover{transform:translateY(-2px);border-color:#3d5480;box-shadow:0 10px 26px rgba(0,0,0,.32)}
+  .card:active{transform:scale(.985)}
+  .ico{font-size:22px;display:block;margin-bottom:9px}
+  .name{font-size:14.5px;font-weight:700;margin-bottom:4px}
+  .desc{font-size:12px;color:var(--sub);line-height:1.5;margin-bottom:11px;min-height:18px}
+  .tag{font-size:10.5px;padding:2px 8px;border-radius:20px;border:1px solid var(--line);color:var(--sub)}
+  .tag.live{color:#7fb2ff;border-color:rgba(79,140,255,.4);background:rgba(79,140,255,.1)}
+  .tag.read{color:#8bd8c0;border-color:rgba(45,212,167,.35);background:rgba(45,212,167,.08)}
+  .tag.perm{color:#f5c86a;border-color:rgba(245,185,66,.35);background:rgba(245,185,66,.08)}
+  .tag.local{color:#9aa8c2}
+  .hint{margin-top:26px;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    padding:13px 15px;font-size:12.5px;color:var(--sub);line-height:1.75}
+  .hint b{color:#bcd0f0}
+  footer{margin-top:26px;text-align:center;font-size:12px;color:#5d6a80;line-height:1.8}
+
+  /* ── 登录层 ── */
+  #login{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:22px;
+    background:radial-gradient(900px 500px at 50% 0%, #1b2740 0%, #0c1119 60%);z-index:50}
+  .box{width:100%;max-width:360px;background:linear-gradient(165deg,#19202f,#141a26);
+    border:1px solid var(--line);border-radius:18px;padding:30px 26px 24px;text-align:center;
+    box-shadow:0 24px 60px rgba(0,0,0,.55)}
+  .box .ico2{font-size:38px;line-height:1;margin-bottom:12px;filter:drop-shadow(0 6px 18px rgba(79,140,255,.45))}
+  .box h2{font-size:18px;font-weight:700;margin-bottom:6px}
+  .box p{font-size:12.5px;color:var(--sub);margin-bottom:22px}
+  .fld{text-align:left;margin-bottom:13px}
+  .fld label{display:block;font-size:12px;color:var(--sub);margin-bottom:6px}
+  .fld input{width:100%;font:inherit;font-size:15px;padding:12px 13px;border-radius:11px;
+    background:#0e131d;border:1px solid #27303f;color:var(--txt);outline:none;transition:.15s}
+  .fld input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,140,255,.16)}
+  .remember{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--sub);margin:4px 0 18px}
+  .remember input{width:15px;height:15px;accent-color:var(--accent)}
+  #loginBtn{width:100%;font:inherit;font-size:15px;font-weight:700;padding:13px;border-radius:11px;border:none;
+    background:linear-gradient(100deg,var(--accent),#2fb3a0);color:#fff;cursor:pointer;transition:.15s}
+  #loginBtn:hover{filter:brightness(1.08)}
+  #loginBtn:active{transform:scale(.985)}
+  #loginBtn:disabled{opacity:.6;cursor:not-allowed}
+  #err{min-height:18px;font-size:12.5px;color:#ff8080;margin-top:12px}
+  .lockmsg{margin-top:14px;font-size:11.5px;color:#5d6a80;line-height:1.7}
+  #main{display:none}
+  .logout{position:fixed;right:14px;top:14px;font-size:12px;color:var(--sub);background:rgba(20,26,38,.9);
+    border:1px solid var(--line);padding:6px 12px;border-radius:20px;cursor:pointer;z-index:20}
+  .logout:hover{color:#fff;border-color:#3d5480}
+  @media(max-width:520px){ header{padding:34px 0 20px} .grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))} }
 </style>
 </head>
 <body>
-<div class="wrap">
+
+<div id="login">
+  <div class="box">
+    <div class="ico2">🔐</div>
+    <h2>私人工具箱</h2>
+    <p>请输入账号密码后进入</p>
+    <div class="fld"><label>账号</label>
+      <input id="u" type="text" autocomplete="username" autocapitalize="off" spellcheck="false" placeholder="账号"></div>
+    <div class="fld"><label>密码</label>
+      <input id="p" type="password" autocomplete="current-password" placeholder="密码"></div>
+    <label class="remember"><input id="rm" type="checkbox" checked> 记住本设备（30 天免登录）</label>
+    <button id="loginBtn">进入工具箱</button>
+    <div id="err"></div>
+    <div class="lockmsg">· 内容已加密，密码错误无法读取<br>· 仅限本人使用</div>
+  </div>
+</div>
+
+<div id="main" class="wrap">
+  <button class="logout" id="logoutBtn">退出</button>
   <header>
     <div class="logo">🧰</div>
     <h1>我的工具箱</h1>
@@ -82,39 +119,42 @@
 </div>
 
 <script>
-// 工具清单：path 为相对路径（拼到 base 上）
-const GROUPS = [
-  {t:"💰 财务", items:[
-    {ico:"💵", name:"月度资产复盘", desc:"账户/出借风险/资产结构", path:"/finance.html", tag:"local", tagName:"服务器备份"},
-    {ico:"🧾", name:"月度收支复盘", desc:"收入/支出/结余两表法", path:"/cashflow.html", tag:"local", tagName:"服务器备份"},
-  ]},
-  {t:"📈 投资", items:[
-    {ico:"📊", name:"A股复盘看板", desc:"大盘/板块/个股行情", path:"/astock.html", tag:"live", tagName:"⚡实时"},
-    {ico:"🥇", name:"黄金监测", desc:"国际金价/PAXG/宏观指标", path:"/gold.html", tag:"live", tagName:"⚡实时"},
-  ]},
-  {t:"📜 历史", items:[
-    {ico:"🏯", name:"华夏朝代脉络", desc:"十四朝·明16帝·人物图谱", path:"/history.html", tag:"read", tagName:"深度阅读"},
-    {ico:"👑", name:"明朝时间线", desc:"十六帝主线·六大分期", path:"/ming.html", tag:"read", tagName:"深度阅读"},
-  ]},
-  {t:"📚 备考", items:[
-    {ico:"📝", name:"统计师刷题", desc:"中级统计师每日刷题", path:"/quiz.html", tag:"read", tagName:"题库"},
-  ]},
-  {t:"🏃 生活", items:[
-    {ico:"🏃", name:"运动打卡", desc:"健身/跑步记录", path:"/fitness.html", tag:"local", tagName:"本地存储"},
-    {ico:"🀄", name:"广东麻将攻略", desc:"红中变玩法全攻略", path:"/mahjong.html", tag:"read", tagName:"攻略"},
-    {ico:"🔍", name:"识图工具箱", desc:"找物品/人物/出处", path:"/image-search.html", tag:"live", tagName:"工具"},
-    {ico:"⚽", name:"2026世界杯", desc:"完整数据与专业分析", path:"/wc.html", tag:"live", tagName:"实时数据"},
-  ]},
-  {t:"🎮 游戏", items:[
-    {ico:"⚔️", name:"演武大会·三队生成器", desc:"三国谋定天下·阵容优化", path:"/sanguo.html", tag:"read", tagName:"工具"},
-  ]},
-];
+/* ============ 加密数据（AES-256-GCM，密钥由密码 PBKDF2 派生） ============ */
+const ENC = {"salt":"vW5LhxwbojLcwHMfP25J4w==","iv":"C3qBS/5SbgJNWgBP","ct":"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","iters":200000};
+const USER = "moxiaowei";
+const SKEY = "mm_tools_key";
+const STS  = "mm_tools_ts";
+const DAYS = 30;
 
-const PERM = [
-  {ico:"💵", name:"月度资产复盘", desc:"永久公开版(GitHub)", href:"https://moxiaowei.github.io/asset-review/", tag:"perm", tagName:"🌐永久"},
-  {ico:"🏯", name:"华夏朝代脉络", desc:"永久公开版(GitHub)", href:"https://moxiaowei.github.io/huaxia-dynasty/", tag:"perm", tagName:"🌐永久"},
-  {ico:"⚔️", name:"演武大会·三队生成器", desc:"永久公开版(GitHub)", href:"https://moxiaowei.github.io/yanwu/", tag:"perm", tagName:"🌐永久"},
-];
+const $ = id => document.getElementById(id);
+const b64d = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const b64e = u => btoa(String.fromCharCode(...new Uint8Array(u)));
+
+async function deriveKey(pwd){
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pwd), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey(
+    {name:"PBKDF2", salt: b64d(ENC.salt), iterations: ENC.iters, hash:"SHA-256"},
+    base, {name:"AES-GCM", length:256}, true, ["decrypt"]);
+}
+
+async function decryptWith(key){
+  const ct = b64d(ENC.ct);
+  const pt = await crypto.subtle.decrypt({name:"AES-GCM", iv: b64d(ENC.iv)}, key, ct);
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+
+async function tryAutoLogin(){
+  const k = localStorage.getItem(SKEY), ts = +localStorage.getItem(STS) || 0;
+  if(!k) return null;
+  if(Date.now() - ts > DAYS*864e5){ localStorage.removeItem(SKEY); localStorage.removeItem(STS); return null; }
+  try{
+    const key = await crypto.subtle.importKey("raw", b64d(k), {name:"AES-GCM"}, true, ["decrypt"]);
+    return await decryptWith(key);
+  }catch(e){ localStorage.removeItem(SKEY); return null; }
+}
+
+/* ============ 渲染 ============ */
+let DATA = null;
 
 function cardHTML(it, base){
   const href = it.href || (base + it.path);
@@ -130,36 +170,38 @@ function cardHTML(it, base){
 
 function paint(base){
   let html='';
-  GROUPS.forEach(g=>{
+  DATA.groups.forEach(g=>{
     html += `<div class="sec"><div class="sec-h"><span class="bar"></span>${g.t}<span class="cnt">${g.items.length}</span></div>`;
     html += `<div class="grid">`+g.items.map(it=>cardHTML(it,base)).join('')+`</div></div>`;
   });
-  html += `<div class="sec"><div class="sec-h"><span class="bar"></span>🌐 永久公开版（服务器关机也能看）<span class="cnt">${PERM.length}</span></div>`;
-  html += `<div class="grid">`+PERM.map(it=>cardHTML(it,'')).join('')+`</div></div>`;
-  document.getElementById('app').innerHTML = html;
+  html += `<div class="sec"><div class="sec-h"><span class="bar"></span>🌐 永久公开版（服务器关机也能看）<span class="cnt">${DATA.perms.length}</span></div>`;
+  html += `<div class="grid">`+DATA.perms.map(it=>cardHTML(it,'')).join('')+`</div></div>`;
+  $('app').innerHTML = html;
 }
 
-const d=new Date();
-document.getElementById('footDate').textContent = d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日 · 更新';
+function startApp(){
+  $('login').style.display='none';
+  $('main').style.display='block';
 
-const host = location.hostname;
-const isTunnel = host.includes('trycloudflare') || host==='localhost' || host.startsWith('127.');
-const dot=document.getElementById('dot'), st=document.getElementById('statusTxt');
+  const d = new Date();
+  $('footDate').textContent = d.getFullYear()+'年'+(d.getMonth()+1)+'月'+d.getDate()+'日 · 更新';
 
-// 隧道内直接相对路径；GitHub Pages 上则读取 live.json 得到当前隧道地址
-if(isTunnel){
-  paint('');
-  dot.className='dot'; st.textContent='运行于家庭服务器 · 全部工具可用';
-}else{
-  fetch('live.json?t='+Date.now(), {cache:'no-store'})
-    .then(r=>r.json())
-    .then(cfg=>{
-      const base = (cfg && cfg.base) ? cfg.base.replace(/\/$/,'') : '';
-      paint(base);
-      // 探活
-      checkAlive(base);
-    })
-    .catch(()=>{ paint(''); checkAlive(''); });
+  const host = location.hostname;
+  const isTunnel = host.includes('trycloudflare') || host==='localhost' || host.startsWith('127.');
+  const dot=$('dot'), st=$('statusTxt');
+
+  if(isTunnel){
+    paint('');
+    dot.className='dot'; st.textContent='运行于家庭服务器 · 全部工具可用';
+  }else{
+    fetch('live.json?t='+Date.now(), {cache:'no-store'})
+      .then(r=>r.json())
+      .then(cfg=>{
+        const base = (cfg && cfg.base) ? cfg.base.replace(/\/$/,'') : '';
+        paint(base); checkAlive(base);
+      })
+      .catch(()=>{ paint(''); checkAlive(''); });
+  }
 }
 
 function checkAlive(base){
@@ -168,10 +210,68 @@ function checkAlive(base){
   fetch(base+'/live.json?t='+Date.now(), {signal:ac.signal, cache:'no-store'})
     .then(r=>r.ok?r.json():Promise.reject())
     .then(j=>{ clearTimeout(to);
-      dot.className='dot'; st.textContent= j&&j.base? '服务器在线 · 工具可用' : '服务器在线'; })
+      $('dot').className='dot'; $('statusTxt').textContent = j&&j.base? '服务器在线 · 工具可用' : '服务器在线'; })
     .catch(()=>{ clearTimeout(to);
-      dot.className='dot off'; st.textContent='服务器离线 · 仅🌐永久版可用'; });
+      $('dot').className='dot off'; $('statusTxt').textContent='服务器离线 · 仅🌐永久版可用'; });
 }
+
+/* ============ 登录交互 ============ */
+let fails = 0, lockedUntil = 0;
+
+async function doLogin(){
+  const u = $('u').value.trim();
+  const p = $('p').value;
+  const err = $('err'), btn = $('loginBtn');
+
+  if(Date.now() < lockedUntil){
+    err.textContent = `尝试次数过多，请 ${Math.ceil((lockedUntil-Date.now())/1000)} 秒后再试`;
+    return;
+  }
+  if(!u || !p){ err.textContent='请填写账号和密码'; return; }
+
+  btn.disabled = true; btn.textContent = '验证中…'; err.textContent='';
+  try{
+    if(u !== USER) throw new Error('bad');
+    const key = await deriveKey(p);
+    DATA = await decryptWith(key);
+
+    if($('rm').checked){
+      const raw = await crypto.subtle.exportKey('raw', key);
+      localStorage.setItem(SKEY, b64e(raw));
+      localStorage.setItem(STS, Date.now());
+    }else{
+      localStorage.removeItem(SKEY); localStorage.removeItem(STS);
+    }
+    startApp();
+  }catch(e){
+    fails++;
+    if(fails >= 5){ lockedUntil = Date.now()+60000; fails = 0; err.textContent='错误次数过多，已锁定 60 秒'; }
+    else err.textContent = `账号或密码错误（还可尝试 ${5-fails} 次）`;
+    $('p').value = '';
+    $('p').focus();
+  }finally{
+    btn.disabled = false; btn.textContent = '进入工具箱';
+  }
+}
+
+$('loginBtn').addEventListener('click', doLogin);
+$('p').addEventListener('keydown', e=>{ if(e.key==='Enter') doLogin(); });
+$('u').addEventListener('keydown', e=>{ if(e.key==='Enter') $('p').focus(); });
+$('logoutBtn').addEventListener('click', ()=>{
+  localStorage.removeItem(SKEY); localStorage.removeItem(STS);
+  location.reload();
+});
+
+/* ============ 启动 ============ */
+(async function(){
+  if(!window.crypto || !crypto.subtle){
+    $('err').textContent = '当前环境不支持加密（请用 https 或 localhost 访问）';
+    return;
+  }
+  const auto = await tryAutoLogin();
+  if(auto){ DATA = auto; startApp(); }
+  else { setTimeout(()=>$('u').focus(), 200); }
+})();
 </script>
 </body>
 </html>
